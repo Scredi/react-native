@@ -7,12 +7,18 @@
  */
 
  import React from 'react';
+ import { RootSiblingParent } from 'react-native-root-siblings';
  
+ import ConnectionProvider from './connection/ConnectionProvider';
  import RouteNavigator from './navigators/RouteNavigator';
 
-const App = () => {
+const App = () => {  
   return (
-    <RouteNavigator/>
+    <RootSiblingParent>
+      <ConnectionProvider>
+        <RouteNavigator/>
+      </ConnectionProvider>
+    </RootSiblingParent>
   );
 };
 
