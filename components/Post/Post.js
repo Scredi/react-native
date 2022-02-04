@@ -67,8 +67,11 @@ const Post = () => {
 
     return launchImageLibrary(options, (response) => {
       const { assets } = response;
-      setPreview(assets[0].uri);
-      setBase64(`data:${assets[0].type};base64,${assets[0].base64}`);
+      
+      if (assets && assets.length > 0) {
+        setPreview(assets[0].uri);
+        setBase64(`data:${assets[0].type};base64,${assets[0].base64}`);
+      }
     });
   }, []);
 
