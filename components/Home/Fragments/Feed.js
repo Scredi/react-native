@@ -29,6 +29,12 @@ const Feed = () => {
     })();
   }, []);
 
+  const handleRefresh = useCallback(async () => {
+    const data = await getData();
+    setFeed(data);
+    setIsLoading(true);
+  }, [setIsLoading, setFeed]);
+
   const renderItem = useCallback(({ item }) => (
     <FeedItem
       imgUrl={item.source}
@@ -46,7 +52,9 @@ const Feed = () => {
         </View>
       }
       data={feed}
-      extraData={feed}
+      extraData={isLoading}
+      onRefresh={() => handleRefresh}
+      refreshing={isLoading}
       renderItem={renderItem}
       keyExtractor={item => item.id}
     />
